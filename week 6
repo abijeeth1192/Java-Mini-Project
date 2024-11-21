@@ -1,0 +1,152 @@
+Given 2 strings input1 & input2.
+·       Concatenate both the strings.
+·       Remove duplicate alphabets & white spaces.
+·       Arrange the alphabets in descending order.
+Assumption 1:
+There will either be alphabets, white spaces or null in both the inputs.
+Assumption 2:
+Both inputs will be in lower case.
+Example 1:
+Input 1: apple
+Input 2: range
+Output: rponlgea
+Example 2:
+Input 1: fruits
+Input 2: are good
+
+import java.util.Scanner;
+
+public class StringProcessor {
+
+    public static String processStrings(String input1, String input2) {
+        String combined = input1 + input2;
+        combined = combined.replaceAll("\\s+", "");
+        
+        boolean[] seen = new boolean[26];
+        StringBuilder uniqueChars = new StringBuilder();
+
+        for (char c : combined.toCharArray()) {
+            int index = c - 'a';
+            if (!seen[index]) {
+                seen[index] = true;
+                uniqueChars.append(c);
+            }
+        }
+        
+        char[] resultArray = uniqueChars.toString().toCharArray();
+        java.util.Arrays.sort(resultArray);
+        
+        for (int i = 0; i < resultArray.length / 2; i++) {
+            char temp = resultArray[i];
+            resultArray[i] = resultArray[resultArray.length - 1 - i];
+            resultArray[resultArray.length - 1 - i] = temp;
+        }
+    String result = new String(resultArray);
+        return result.isEmpty() ? "null" : result;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String input1 = scanner.nextLine();
+        String input2 = scanner.nextLine();
+        String result = processStrings(input1, input2);
+        System.out.println(result);
+        scanner.close();
+    }
+}
+
+Given a String input1, which contains many number of words separated by : and each word contains exactly two lower case alphabets, generate an output based upon the below 2 cases.
+Note:
+
+1.      All the characters in input 1 are lowercase alphabets.
+
+2.      input 1 will always contain more than one word separated by :
+
+3.      Output should be returned in uppercase.
+
+Case 1:
+Check whether the two alphabets are same.
+If yes, then take one alphabet from it and add it to the output.
+import java.util.Scanner;
+
+public class StringProcessor {
+    
+    public static String processString(String input1) {
+        String[] words = input1.split(":");
+        StringBuilder output = new StringBuilder();
+        
+        for (String word : words) {
+            char char1 = word.charAt(0);
+            char char2 = word.charAt(1);
+            
+            if (char1 == char2) {
+                output.append(Character.toUpperCase(char1));
+            } else {
+                int pos1 = char1 - 'a' + 1;
+                int pos2 = char2 - 'a' + 1;
+                int difference = Math.abs(pos1 - pos2);
+                char resultChar = (char) ('a' + difference - 1);
+                output.append(Character.toUpperCase(resultChar));
+            }
+        }
+        
+        return output.toString();
+    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();  String processedInput = input.split("//")[0].replaceAll("\\s+", "");
+        String result = processString(processedInput);
+        System.out.println(result);
+        
+        scanner.close();
+    }
+}
+
+You are provided a string of words and a 2-digit number. The two digits of the number represent the two words that are to be processed.
+For example:
+If the string is "Today is a Nice Day" and the 2-digit number is 41, then you are expected to process the 4th word ("Nice") and the 1st word ("Today").
+The processing of each word is to be done as follows:
+Extract the Middle-to-Begin part: Starting from the middle of the word, extract the characters till the beginning of the word.
+Extract the Middle-to-End part: Starting from the middle of the word, extract the characters till the end of the word.
+If the word to be processed is "Nice":
+Its Middle-to-Begin part will be "iN".
+Its Middle-to-End part will be "ce".
+So, merged together these two parts would form "iNce".
+Similarly, if the word to be processed is "Today":
+Its Middle-to-Begin part will be "doT".
+Its Middle-to-End part will be "day".
+So, merged together these two parts would form "doTday".
+Note: Note that the middle letter 'd' is part of both the extracted parts. So, for words whose length is odd, the middle letter should be included in both the extracted parts.import java.util.Scanner;
+
+public class WordProcessor {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String input1 = scanner.nextLine();
+        int input2 = scanner.nextInt();
+
+        String[] words = input1.split(" ");
+        int firstIndex = input2 / 10 - 1;
+        int secondIndex = input2 % 10 - 1;
+
+        String processedFirstWord = processWord(words[firstIndex]);
+        String processedSecondWord = processWord(words[secondIndex]);
+
+        System.out.println(processedFirstWord + " " + processedSecondWord);
+    }
+
+    private static String processWord(String word) {
+        int len = word.length();
+        int mid = len / 2;
+        String middleToBegin;
+        String middleToEnd;
+
+        if (len % 2 == 0) {
+            middleToBegin = new StringBuilder(word.substring(0, mid)).reverse().toString();
+            middleToEnd = word.substring(mid);
+        } else {middleToBegin = new StringBuilder(word.substring(0, mid + 1)).reverse().toString();
+            middleToEnd = word.substring(mid);
+        }
+
+        return middleToBegin + middleToEnd;
+    }
+}
