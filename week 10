@@ -1,0 +1,124 @@
+Given an ArrayList, the task is to get the first and last element of the ArrayList in Java.
+Input: ArrayList = [1, 2, 3, 4]
+Output: First = 1, Last = 4
+Input: ArrayList = [12, 23, 34, 45, 57, 67, 89]
+Output: First = 12, Last = 89
+import java.util.ArrayList;
+import java.util.Scanner;
+public class UserInputArrayList {
+ public static void main(String[] args) {
+ Scanner scanner = new Scanner(System.in);
+ ArrayList<Integer> list = new ArrayList<>();
+ int n = scanner.nextInt();
+ for (int i = 0; i < n; i++) {
+ int element = scanner.nextInt();
+ list.add(element);
+ }
+ System.out.println("ArrayList: " + list);
+
+ if (!list.isEmpty()) {
+ System.out.println("First : " + list.get(0) + ", Last : " + list.get(list.size(
+ } else {
+ System.out.println("The ArrayList is empty.");
+ }
+
+ scanner.close();
+ }
+}
+Test Input Expected Got
+ 1 6
+30
+20
+40
+50
+10
+80
+ArrayList: [30, 20, 40, 50, 10, 80]
+First : 30, Last : 80
+ArrayList: [30, 20, 40, 50, 10, 80]
+First : 30, Last : 80
+
+ 2 4
+5
+15
+25
+35
+ArrayList: [5, 15, 25, 35]
+First : 5, Last : 35
+ArrayList: [5, 15, 25, 35]
+First : 5, Last : 35
+
+Passed all tests!
+1 ▼
+The given Java program is based on the ArrayList methods and its usage. The Java program is partially filled. Your
+task is to fill in the incomplete statements to get the desired output.
+list.set();
+list.indexOf());
+list.lastIndexOf())
+list.contains()
+list.size());
+list.add();
+list.remove();
+The above methods are used for the below Java programimport java.util.ArrayList;
+import java.util.Scanner;
+class prog {
+public static void main(String[] args)
+{
+Scanner sc= new Scanner(System.in);
+int n = sc.nextInt();
+ArrayList<Integer> list = new ArrayList<Integer>();
+for(int i = 0; i<n;i++)
+list.add(sc.nextInt());
+// printing initial value ArrayList
+System.out.println("ArrayList: " + list);
+//Replacing the element at index 1 with 100
+list.set(1,100);
+//Getting the index of first occurrence of 100
+System.out.println("Index of 100 = "+ list.indexOf(100) );
+//Getting the index of last occurrence of 100
+System.out.println("LastIndex of 100 = "+ list.lastIndexOf(100) );
+// Check whether 200 is in the list or not
+System.out.println( list.contains(200) ); //Output : false
+// Print ArrayList size
+System.out.println("Size Of ArrayList = "+ list.size() );
+//Inserting 500 at index 1
+ list.add(1,500); // code here
+//Removing an element from position 3
+ list.remove(3); // code here
+System.out.print("ArrayList: " + list);
+
+Write a Java program to reverse elements in an array list.
+Sample input and Output:
+Red
+Green
+Orange
+White
+Black
+Sample output
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+public class ReverseArrayList {
+ public static void main(String[] args) {
+ Scanner scanner = new Scanner(System.in);
+
+ ArrayList<String> list = new ArrayList<>();
+
+ int n = scanner.nextInt();
+ scanner.nextLine();
+
+ for (int i = 0; i < n; i++) {
+ list.add(scanner.nextLine());
+ }
+ System.out.println("List before reversing :");
+ System.out.println(list);
+
+ Collections.reverse(list);
+
+ System.out.println("List after reversing :");
+ System.out.println(list);
+
+ scanner.close();
+ }
+}
