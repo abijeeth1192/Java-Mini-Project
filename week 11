@@ -1,0 +1,207 @@
+Java HashSet class implements the Set interface, backed by a hash table which is actually a HashMap instance.
+No guarantee is made as to the iteration order of the hash sets which means that the class does not guarantee the constant order of elements
+over time.
+This class permits the null element.
+The class also offers constant time performance for the basic operations like add, remove, contains, and size assuming the hash function
+disperses the elements properly among the buckets.
+
+import java.util.HashSet;
+import java.util.Scanner;
+public class HashSetExample {
+ public static void main(String[] args) {
+ Scanner scanner = new Scanner(System.in);
+ int n = scanner.nextInt();
+ HashSet<Integer> numbers = new HashSet<>();
+ for (int i = 0; i < n; i++) {
+ numbers.add(scanner.nextInt());
+ }
+ int searchKey = scanner.nextInt();
+ if (numbers.contains(searchKey)) {
+ System.out.println(searchKey + " was found in the set.");
+ } else {
+ System.out.println(searchKey + " was not found in the set.");
+ }
+ scanner.close();
+Write a Java program to compare two sets and retain elements that are the same.
+Sample Input and Output:
+5
+Football
+Hockey
+Cricket
+Volleyball
+Basketball
+7 // HashSet 2:
+Golf
+Cricket
+Badminton
+Football
+Hockey
+Volleyball
+Handball
+SAMPLE OUTPUT:
+Football
+Hockey
+Cricket
+Volleyball
+Basketball
+import java.util.HashSet;
+import java.util.Scanner;
+public class Main {
+ public static void main(String[] args) {
+ Scanner scanner = new Scanner(System.in);
+ HashSet<String> set1 = new HashSet<>();
+ HashSet<String> set2 = new HashSet<>();
+ int n1 = scanner.nextInt();
+ for (int i=0;i<n1;i++) {
+ set1.add(scanner.next());
+ }
+ int n2 = scanner.nextInt();
+ for (int i=0; i<n2;i++) {
+ set2.add(scanner.next());
+ }
+ set1.retainAll(set2);
+ for (String element:set1) {
+ System.out.println(element);
+ }
+ scanner.close();
+ }
+}
+Test Input Expected Got
+ 1 5
+Football
+Hockey
+Cricket
+Volleyball
+Basketball
+7
+Golf
+Cricket
+Badminton
+Football
+Hockey
+Volleyball
+Throwball
+Cricket
+Hockey
+Volleyball
+Football
+Cricket
+Hockey
+Volleyball
+Football
+
+import java.util.HashSet;
+import java.util.Scanner;
+public class Main {
+ public static void main(String[] args) {
+ Scanner scanner = new Scanner(System.in);
+ HashSet<String> set1 = new HashSet<>();
+ HashSet<String> set2 = new HashSet<>();
+ int n1 = scanner.nextInt();
+ for (int i=0;i<n1;i++) {
+ set1.add(scanner.next());
+ }
+ int n2 = scanner.nextInt();
+ for (int i=0; i<n2;i++) {
+ set2.add(scanner.next());
+ }
+ set1.retainAll(set2);
+ for (String element:set1) {
+ System.out.println(element);
+ }
+ scanner.close();
+ }
+}
+Test Input Expected Got
+ 1 5
+Football
+Hockey
+Cricket
+Volleyball
+Basketball
+7
+Golf
+Cricket
+Badminton
+Football
+Hockey
+Volleyball
+Throwball
+Cricket
+Hockey
+Volleyball
+Football
+Cricket
+Hockey
+Volleyball
+Football
+import java.util.HashSet;
+import java.util.Scanner;
+public class Main {
+ public static void main(String[] args) {
+ Scanner scanner = new Scanner(System.in);
+ HashSet<String> set1 = new HashSet<>();
+ HashSet<String> set2 = new HashSet<>();
+ int n1 = scanner.nextInt();
+ for (int i=0;i<n1;i++) {
+ set1.add(scanner.next());
+ }
+ int n2 = scanner.nextInt();
+ for (int i=0; i<n2;i++) {
+ set2.add(scanner.next());
+ }
+ set1.retainAll(set2);
+ for (String element:set1) {
+ System.out.println(element);
+ }
+ scanner.close();
+
+
+Java HashMap Methods
+containsKey() Indicate if an entry with the specified key exists in the map
+containsValue() Indicate if an entry with the specified value exists in the map
+putIfAbsent() Write an entry into the map but only if an entry with the same key does not already exist
+remove() Remove an entry from the map
+replace() Write to an entry in the map only if it exists
+size() Return the number of entries in the map
+Your task is to fill the incomplete code to get desired output
+import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.Scanner;
+class prog {
+ public static void main(String[] args) {
+ // Creating HashMap with default initial capacity and load factor
+ HashMap<String, Integer> map = new HashMap<String, Integer>();
+ String name;
+ int num;
+ Scanner sc = new Scanner(System.in);
+ int n = sc.nextInt();
+ for (int i = 0; i < n; i++) {
+ name = sc.next();
+ num = sc.nextInt();
+ map.put(name, num);
+ }
+ // Printing key-value pairs
+ Set<Entry<String, Integer>> entrySet = map.entrySet();
+ for (Entry<String, Integer> entry : entrySet) {
+ System.out.println(entry.getKey() + " : " + entry.getValue());
+ }
+ System.out.println("----------");
+ // Creating another HashMap
+ HashMap<String, Integer> anotherMap = new HashMap<String, Integer>();
+ // Inserting key-value pairs to anotherMap using put() method
+ anotherMap.put("SIX", 6);
+ anotherMap.put("SEVEN", 7);
+ // Inserting key-value pairs of mapto anotherMap using putAll() method
+ anotherMap.putAll(map);
+ // Printing key-value pairs of anotherMap
+ entrySet = anotherMap.entrySet();
+ for (Entry<String, Integer> entry : entrySet) {
+ System.out.println(entry.getKey() + " : " + entry.getValue());
+ }
+ // Adds key-value pair 'FIVE-5' only if it is not present in map
+ map.putIfAbsent("FIVE", 5);
+ // Retrieving a value associated with key 'TWO'
+ int value = map.get("TWO");
+ System.out.println(value);
