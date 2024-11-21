@@ -1,0 +1,195 @@
+Given an integer array as input, perform the following operations on the array, in the below specified sequence.
+1.      Find the maximum number in the array.
+2.      Subtract the maximum number from each element of the array.
+3.      Multiply the maximum number (found in step 1) to each element of the resultant array.
+After the operations are done, return the resultant array.
+Example 1:
+input1 = 4 (represents the number of elements in the input1 array)
+input2 = {1, 5, 6, 9}
+Expected Output = {-72, -36, 27, 0}
+Explanation:
+Step 1: The maximum number in the given array is 9.
+Step 2: Subtracting the maximum number 9 from each element of the array:
+{(1 - 9), (5 - 9), (6 - 9), (9 - 9)} = {-8, -4, -3, 0}
+Step 3: Multiplying the maximum number 9 to each of the resultant array:
+{(-8 x 9), (-4 x 9), (3 x 9), (0 x 9)} = {-72, -36, -27, 0}
+So, the expected output is the resultant array {-72, -36, -27, 0}.
+Example 2:
+input1 = 5 (represents the number of elements in the input1 array)
+input2 = {10, 87, 63, 42, 2}
+Expected Output = {-6699, 0, -2088, -3915, -7395}
+
+import java.util.*;
+
+
+public class arrays
+{    public static int max(int arr[],int n)
+     {
+         int max=arr[0];
+         for(int i=1;i<n;i++)
+         {
+             if(arr[i]>max)
+               max=arr[i];
+         }
+ return max;
+     }
+     public static void main(String[] args)
+     {
+         Scanner obj=new Scanner(System.in);
+         int n = obj.nextInt();
+         int[]arr = new int[n];
+         for(int i=0;i<n;i++)
+         {
+             arr[i]=obj.nextInt();
+         }
+         int m = max(arr,n);
+         for(int i=0;i<n;i++)
+ {
+             arr[i]=(arr[i]-m)*m;
+             System.out.print(arr[i]+" ");}
+     }
+    
+    
+    
+}
+
+Given an array of numbers, you are expected to return the sum of the longest sequence of POSITIVE numbers in the array.
+If there are NO positive numbers in the array, you are expected to return -1.
+In this question’s scope, the number 0 should be considered as positive.
+Note: If there are more than one group of elements in the array having the longest sequence of POSITIVE numbers, you are expected to return the total sum of all those POSITIVE numbers (see example 3 below).
+input1 represents the number of elements in the array.
+input2 represents the array of integers.
+import java.util.Scanner;
+import java.util.
+public class longest
+{
+    public static void main(String args[])
+    {
+        Scanner obj=new Scanner(System.in);
+        int n=obj.nextInt();
+        int [] arr=new int[n];
+        int s=0,c=0;
+        ArrayList<integer> a=new ArrayList<>();
+        ArrayList<Integer> b=new ArrayList<>();
+        for(int i=0;i<n;i++)
+        {
+            arr[i]=obj.nextInt();
+            if(arr[i]>=0)
+            {
+                s=s+arr[i];
+                c++;
+            }
+            else if(c!=0)
+            {
+                a.add(s);
+                b.add(c);
+                s=0;
+                c=0;
+     }
+        }
+        obj.close();
+        if(b.size()==0)
+        {
+            System.out.print("-1");
+            return;
+        }
+        int m=collections.max(b);
+        s=0;
+        for(int i=0;i<b.size();i++)
+        {
+            if(b.get(i)==m)
+            s=s+(a.get(i));
+        }
+        System.out.println(s);
+    }
+  }
+
+     }
+        }
+        obj.close();
+        if(b.size()==0)
+        {
+            System.out.print("-1");
+            return;
+        }
+        int m=collections.max(b);
+        s=0;
+        for(int i=0;i<b.size();i++)
+        {
+            if(b.get(i)==m)
+            s=s+(a.get(i));
+        }
+        System.out.println(s);
+    }
+  }
+     }
+        }
+        obj.close();
+        if(b.size()==0)
+        {
+            System.out.print("-1");
+            return;
+        }
+        int m=collections.max(b);
+        s=0;
+        for(int i=0;i<b.size();i++)
+        {
+            if(b.get(i)==m)
+            s=s+(a.get(i));
+        }
+        System.out.println(s);
+    }
+  }
+You are provided with a set of numbers (array of numbers).
+You have to generate the sum of specific numbers based on its position in the array set provided to you.
+This is explained below:
+Example 1:
+Let us assume the encoded set of numbers given to you is:
+input1:5 and input2: {1, 51, 436, 7860, 41236}
+Step 1:
+Starting from the 0th index of the array pick up digits as per below:
+0th index – pick up the units value of the number (in this case is 1).
+1st index - pick up the tens value of the number (in this case it is 5).
+2nd index - pick up the hundreds value of the number (in this case it is 4).
+3rd index - pick up the thousands value of the number (in this case it is 7)
+4th index - pick up the ten thousands value of the number (in this case it is 4).
+(Continue this for all the elements of the input array).
+The array generated from Step 1 will then be – {1, 5, 4, 7, 4}.
+Step 2:
+Square each number present in the array generated in Step 1.
+{1, 25, 16, 49, 16}
+Step 3:
+Calculate the sum of all elements of the array generated in Step 2 to get the final result. The result will be = 107.
+Note:
+1)   While picking up a number in Step1, if you observe that the number is smaller than the required position then use 0.
+2)     In the given function, input1[] is the array of numbers and input2 represents the number of elements in input1.
+Example 2:
+input1: 5 and input1: {1, 5, 423, 310, 61540}
+Step 1:
+Generating the new array based on position, we get the below array:
+{1, 0, 4, 0, 6}
+In this case, the value in input1 at index 1 and 3 is less than the value required to be picked up based on position, so we use a 0.
+
+import java.util.*;
+
+
+public class arraynew
+{
+    public static  void main(String[] args)
+    {
+        Scanner obj=new Scanner(System.in);
+        int n=obj.nextInt();
+        int a,c=0,s=0;
+        for(int i=0;i<n;i++)
+        {
+            a=obj.nextInt();
+            a=a/((int)Math.pow(10,i));
+            a=(int)Math.pow(a,2);
+            s+=a;
+        }
+        System.out.println(s);
+        obj.close();
+        
+    }   
+}
+
