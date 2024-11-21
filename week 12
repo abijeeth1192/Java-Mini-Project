@@ -1,0 +1,140 @@
+You are provided with a string which has a sequence of 1’s and 0’s.
+This sequence is the encoded version of a English word. You are supposed write a program to decode the
+provided string and find the original word.
+Each alphabet is represented by a sequence of 0s.
+This is as mentioned below:
+Z : 0
+Y : 00
+X : 000
+W : 0000
+V : 00000
+U : 000000
+T : 0000000
+and so on upto A having 26 0’s (00000000000000000000000000).
+The sequence of 0’s in the encoded form are separated by a single 1 which helps to distinguish between 2 letters.
+import java.util.Scanner;
+public class DecodeString {
+ public static void main(String[] args) {
+ Scanner s = new Scanner(System.in);
+ String enc = s.nextLine();
+ String[] seq = enc.split("1");
+ StringBuilder res = new StringBuilder();
+ for (String w : seq) {
+ int len = w.length();
+ if (len > 0) {
+ char c = (char) ('Z' - (len - 1));
+ res.append(c);
+ }
+ }
+ System.out.println(res.toString());
+ s.close();
+ }
+}
+Write a function that takes an input String (sentence) and generates a new String (modified sentence) by reversing
+the words in the original String, maintaining the words position.
+In addition, the function should be able to control the reversing of the case (upper or lowercase) based on a
+case_option parameter, as follows:
+If case_option = 0, normal reversal of words i.e., if the original sentence is “Wipro TechNologies BangaLore”, the
+new reversed sentence should be “orpiW seigoloNhceT eroLagnaB”.
+If case_option = 1, reversal of words with retaining position’s case i.e., if the original sentence is “Wipro
+TechNologies BangaLore”, the new reversed sentence should be “Orpiw SeigOlonhcet ErolaGnab”.
+Note that positions 1, 7, 11, 20 and 25 in the original string are uppercase W, T, N, B and L.
+Similarly, positions 1, 7, 11, 20 and 25 in the new string are uppercase O, S, O, E and G.
+
+import java.util.Scanner;
+public class SentenceReverser {
+ public static void main(String[] args) {
+ Scanner sc = new Scanner(System.in);
+
+ String s = sc.nextLine();
+ int c = sc.nextInt();
+
+ String[] w = s.split(" ");
+ StringBuilder res = new StringBuilder();
+
+ for (String wd : w) {
+ StringBuilder rw = new StringBuilder(wd);
+ rw.reverse();
+
+ if (c == 1) {
+StringBuilderfw=newStringBuilder();1 ▼
+2
+3 ▼
+4 ▼
+5
+6
+7
+8
+9
+10
+11
+12
+13 ▼
+14
+15
+16
+17 ▼
+18
+ StringBuilder fw = new StringBuilder();
+ for (int i = 0; i < wd.length(); i++) {
+ char o = wd.charAt(i);
+ char r = rw.charAt(i);
+ if (Character.isAlphabetic(o)) {
+ if (Character.isUpperCase(o)) {
+ fw.append(Character.toUpperCase(r));
+ } else {
+ fw.append(Character.toLowerCase(r));
+ }
+ } else {
+ fw.append(r);
+ }
+ }
+ res.append(fw).append(" ");
+ } else {
+ res.append(rw).append(" ");}
+
+ System.out.println(res.toString().trim());
+ sc.close();
+
+Given two char arrays input1[] and input2[] containing only lower case alphabets, extracts the alphabets which are
+present in both arrays (common alphabets).
+Get the ASCII values of all the extracted alphabets.
+Calculate sum of those ASCII values. Lets call it sum1 and calculate single digit sum of sum1, i.e., keep adding the
+digits of sum1 until you arrive at a single digit.
+Return that single digit as output.
+Note:
+1. Array size ranges from 1 to 10.
+2. All the array elements are lower case alphabets.
+3. Atleast one common alphabet will be found in the arrays.
+Example 1:
+input1: {‘a’, ‘b’, ‘c’}
+input2: {‘b’, ’c’}
+import java.util.HashSet;
+import java.util.Set;
+public class CommonAlphabets {
+ public static int calculateSingleDigitSum(int sum) {
+ while (sum >= 10) {
+ sum = sumOfDigits(sum);
+ }
+ return sum;
+ }
+ public static int sumOfDigits(int num) {
+ int sum = 0;
+ while (num > 0) {
+ sum += num % 10;
+ num /= 10;
+ }
+ return sum;
+ }
+ public static void main(String[] args) {
+ char[] input1 = {'a', 'b', 'c'};
+ char[] input2 = {'b', 'c'};
+ Set<Character> set1 = new HashSet<>();
+ Set<Character> set2 = new HashSet<>();
+ for (char ch : input1) set1.add(ch);
+ for (char ch : input2) set2.add(ch);
+ set1.retainAll(set2);
+ int sum1 = 0;
+ for (char ch : set1) sum1 += (int) ch;
+ int result = calculateSingleDigitSum(sum1);
+ System.out.println(result);
